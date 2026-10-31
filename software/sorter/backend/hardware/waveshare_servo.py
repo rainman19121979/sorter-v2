@@ -692,7 +692,7 @@ class WaveshareServoMotor:
         An uncalibrated servo is refused (the layer goes offline with a clear
         message) until the operator calibrates it from the servo setup."""
         # Set PID to avoid undershooting (factory default I=0 causes issues)
-        self._bus.set_pid(self._servo_id, 32, 32, 20)
+        self._bus.set_pid(self._servo_id, 15, 15, 0)  # HB: weicher, Original 32,32,20
         apply_max_torque(self._bus, self._servo_id, self._max_torque_permille)
 
         limits = self._bus.read_angle_limits(self._servo_id)
